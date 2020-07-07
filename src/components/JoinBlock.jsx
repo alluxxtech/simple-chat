@@ -1,12 +1,41 @@
 import React from "react";
-import socket from "../socket";
+import axios from "axios";
 
-export default function JoinBlock() {
+export default function JoinBlock({ onLogin }) {
+  const [roomId, setRoomId] = React.useState("");
+  const [userName, setUserName] = React.useState("");
+  const [isLoading, setLoading] = React.useState(false);
+
+  const onEnter = async () => {
+    if (!roomId || !userName) {
+      return alert("Invalid data");
+    }
+    const obj = {
+      roomId,
+      userName,
+    };
+    setLoading(true);
+    await axios.post("/rooms", obj);
+    onLogin(obj);
+  };
+
   return (
     <div className="join-block">
-      <input type="text" placeholder="Room ID" />
-      <input type="text" placeholder="Your name" />
-      <button>Enter</button>
+      <input
+        type="text"
+        placeholder="Room ID"
+        value={roomId}
+        onChange={(e) => setRoomId(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Your name"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+      />
+      <button disabled={isLoading} onClick={onEnter}>
+        {isLoading ? "Entering" : "Enter"}
+      </button>
     </div>
   );
 }
