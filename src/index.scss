@@ -41,14 +41,41 @@ code {
   padding: 20px 100px;
 
   &__userList-title {
-    font-weight: bold;
+    // font-weight: bold;
     margin: 20px 10px 0;
+    font-size: 14px;
+
+    hr {
+      display: block;
+      height: 1px;
+      border: 0;
+      border-top: 1px solid #d6d6d6;
+      padding: 0;
+      margin: 10px 0;
+    }
   }
 
   &__userList-list {
     display: flex;
     flex-direction: column;
-    margin: 10px 20px;
+    margin: 15px 20px 15px 10px;
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+      font-size: 13px;
+
+      li {
+        background-color: white;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        padding: 2px 8px;
+      }
+      li:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
   }
 
   &__user {
@@ -85,6 +112,8 @@ code {
 .chat-wrapper__messages-field {
   flex: 1;
   margin-bottom: 20px;
+  height: calc(100% - 122px);
+  overflow: auto;
 }
 
 .chat-wrapper__message-input {
@@ -116,16 +145,17 @@ code {
     margin-bottom: 15px;
   }
   &__message {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    padding: 5px;
+    padding: 5px 10px;
     background-color: #486ce4;
     color: white;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 7px;
+    font-size: 14px;
   }
   &__username {
-    font-size: 13px;
+    font-size: 12px;
     color: rgb(163, 163, 163);
   }
 }
