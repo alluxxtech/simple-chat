@@ -48,7 +48,12 @@ export default function Chat({ users, messages, userName, roomId, onAddMessage }
         <div className="chat-wrapper__messages-block">
           <div ref={messagesRef} className="chat-wrapper__messages-field messages-field">
             {messages.map((message, idx) => (
-              <div key={idx} className="messages-field__element">
+              <div
+                key={idx}
+                className={`messages-field__element ${
+                  userName === message.userName ? "user-message" : ""
+                }`}
+              >
                 <div className="messages-field__message">{message.text}</div>
                 <div className="messages-field__username">
                   <span>{message.userName}</span>
